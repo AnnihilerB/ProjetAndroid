@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    boolean imageEstAffichéeI = false;
+    boolean imageEstAffichée = false;
 
     ImageView logo;
     TextView info;
@@ -46,15 +46,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void afficherCacher(ImageView logo, TextView info){
-        if (imageEstAffichéeI == false) {
+        if (imageEstAffichée == false) {
             logo.setVisibility(View.VISIBLE);
             info.setText("Largeur : " + logo.getDrawable().getIntrinsicWidth() + " hauteur : " +logo.getDrawable().getIntrinsicHeight() );
-            imageEstAffichéeI = true;
+            imageEstAffichée = true;
         }
         else{
             logo.setVisibility(View.INVISIBLE);
             info.setText("Aucune image");
-            imageEstAffichéeI = false;
+            imageEstAffichée = false;
         }
 
     }
