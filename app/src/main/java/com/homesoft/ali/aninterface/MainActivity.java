@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         info.setText("Aucune image");
 
-        action1.setOnClickListener((View.OnClickListener)this);
+        action1.setOnClickListener(this);
         action2.setOnClickListener(this);
         afficherCacher.setOnClickListener(this);
     }
