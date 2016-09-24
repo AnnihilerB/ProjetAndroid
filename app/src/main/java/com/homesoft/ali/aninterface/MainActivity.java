@@ -31,15 +31,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         this.info = (TextView)findViewById(R.id.textView);
 
-        Button action1 = (Button)findViewById(R.id.niveaugris);
-        Button action2 = (Button)findViewById(R.id.sepia);
-        Button afficherCacher = (Button)findViewById(R.id.afficherCacher);
+        Button boutonNvxGris = (Button)findViewById(R.id.niveaugris);
+        Button boutonSepia = (Button)findViewById(R.id.sepia);
+        Button boutonAfficherCacher = (Button)findViewById(R.id.afficherCacher);
+        Button boutonReinit = (Button)findViewById(R.id.reinit);
 
         info.setText("Aucune image");
 
-        action1.setOnClickListener(this);
-        action2.setOnClickListener(this);
-        afficherCacher.setOnClickListener(this);
+        boutonNvxGris.setOnClickListener(this);
+        boutonSepia.setOnClickListener(this);
+        boutonAfficherCacher.setOnClickListener(this);
+        boutonReinit.setOnClickListener(this);
 
         this.t = new Traitements(logo);
     }
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "Action 2", Toast.LENGTH_SHORT).show();
         if (view.getId() == R.id.afficherCacher)
             afficherCacher(logo, info);
+        if (view.getId() == R.id.reinit)
+            t.reinit();
     }
 
     public void afficherCacher(ImageView logo, TextView info){
