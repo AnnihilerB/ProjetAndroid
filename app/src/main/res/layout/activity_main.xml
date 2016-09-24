@@ -21,17 +21,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:src="@mipmap/logo"
-        />
+        android:src="@mipmap/vegeta"
+        android:layout_above="@+id/niveaugris"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/sepia"
+        android:layout_alignEnd="@+id/sepia" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Action 1"
-        android:id="@+id/action1"
+        android:text="Niveau de gris"
+        android:id="@+id/niveaugris"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -40,9 +41,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Action 2"
-        android:id="@+id/action2"
-        android:layout_alignTop="@+id/action1"
+        android:text="Sépia"
+        android:id="@+id/sepia"
+        android:layout_alignTop="@+id/niveaugris"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
