@@ -1,8 +1,6 @@
 package com.homesoft.ali.aninterface;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
@@ -12,7 +10,7 @@ import android.widget.ImageView;
  */
 public class Traitements {
 
-    Bitmap bMap;
+    Bitmap bitmapOriginal;
     ImageView iv;
 
     public Traitements(ImageView imageView){
@@ -20,15 +18,15 @@ public class Traitements {
         iv.buildDrawingCache(true);
 
         BitmapDrawable drawable = (BitmapDrawable)iv.getDrawable();
-        bMap = drawable.getBitmap();
+        bitmapOriginal = drawable.getBitmap();
     }
 
     public void niveauxGris(){
 
-        Bitmap imageDest = bMap.copy(Bitmap.Config.ARGB_8888, true);
+        Bitmap imageDest = bitmapOriginal.copy(Bitmap.Config.RGB_565, true);
 
-        int hauteur = bMap.getHeight();
-        int largeur = bMap.getWidth();
+        int hauteur = bitmapOriginal.getHeight();
+        int largeur = bitmapOriginal.getWidth();
 
         int couleurPixel;
         int couleurDest;
@@ -39,17 +37,24 @@ public class Traitements {
 
         for (int y = 0; y < hauteur; ++y){
             for (int x = 0; x < largeur; x++){
-                couleurPixel = bMap.getPixel(x,y);
+                couleurPixel = bitmapOriginal.getPixel(x,y);
 
                 rouge = 0.3 * Color.red(couleurPixel);
+
+                System.out.println((int)rouge);
+
                 vert = 0.69 * Color.green(couleurPixel);
                 bleu = 0.11 * Color.blue(couleurPixel);
 
-                couleurDest = Color.rgb((int)rouge, (int)vert, (int)bleu);
+                couleurDest = Color.rgb((int) rouge, (int)vert, (int)bleu);
                 imageDest.setPixel(x,y,couleurDest);
             }
         }
         this.iv.setImageBitmap(imageDest);
+    }
+
+    public void reinit(){
+        iv.setImageBitmap(bitmapOriginal);
     }
 
 }
