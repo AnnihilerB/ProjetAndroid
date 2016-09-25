@@ -39,15 +39,10 @@ public class Traitements {
             for (int x = 0; x < largeur; x++){
                 couleurPixel = bitmapOriginal.getPixel(x,y);
 
-                rouge = Color.red(couleurPixel);
-                vert = Color.green(couleurPixel);
-                bleu = Color.blue(couleurPixel);
+                couleurDest = (int)( (0.299 * Color.red(couleurPixel)) + (0.587 * Color.green(couleurPixel)) + (0.114 * Color.blue(couleurPixel)) );
 
-                int couleurInter = (rouge + vert + bleu) / 3;
-                rouge = vert = bleu = couleurInter;
-
+                rouge = vert = bleu = couleurDest;
                 couleurDest = Color.rgb(rouge, vert, bleu);
-
                 imageDest.setPixel(x,y,couleurDest);
             }
         }
