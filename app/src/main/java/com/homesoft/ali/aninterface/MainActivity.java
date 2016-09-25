@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             logo.setVisibility(View.VISIBLE);
         }
         if (view.getId() == R.id.sepia)
-            Toast.makeText(this, "Action 2", Toast.LENGTH_SHORT).show();
+            t.sepia();
+            logo.setVisibility(View.INVISIBLE);
+            logo.setVisibility(View.VISIBLE);
         if (view.getId() == R.id.afficherCacher)
             afficherCacher(logo, info);
         if (view.getId() == R.id.reinit)
