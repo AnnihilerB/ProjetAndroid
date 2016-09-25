@@ -23,7 +23,7 @@ public class Traitements {
 
     public void niveauxGris(){
 
-        Bitmap imageDest = bitmapOriginal.copy(Bitmap.Config.RGB_565, true);
+        Bitmap imageDest = bitmapOriginal.copy(Bitmap.Config.ARGB_8888, true);
 
         int hauteur = bitmapOriginal.getHeight();
         int largeur = bitmapOriginal.getWidth();
@@ -31,22 +31,23 @@ public class Traitements {
         int couleurPixel;
         int couleurDest;
 
-        double rouge;
-        double vert;
-        double bleu;
+        int rouge;
+        int vert;
+        int bleu;
 
         for (int y = 0; y < hauteur; ++y){
             for (int x = 0; x < largeur; x++){
                 couleurPixel = bitmapOriginal.getPixel(x,y);
 
-                rouge = 0.3 * Color.red(couleurPixel);
+                rouge = Color.red(couleurPixel);
+                vert = Color.green(couleurPixel);
+                bleu = Color.blue(couleurPixel);
 
-                System.out.println((int)rouge);
+                int couleurInter = (rouge + vert + bleu) / 3;
+                rouge = vert = bleu = couleurInter;
 
-                vert = 0.69 * Color.green(couleurPixel);
-                bleu = 0.11 * Color.blue(couleurPixel);
+                couleurDest = Color.rgb(rouge, vert, bleu);
 
-                couleurDest = Color.rgb((int) rouge, (int)vert, (int)bleu);
                 imageDest.setPixel(x,y,couleurDest);
             }
         }
