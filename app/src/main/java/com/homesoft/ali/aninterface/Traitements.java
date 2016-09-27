@@ -61,19 +61,19 @@ public class Traitements {
 
     public void sepia() {
 
-        int couleurPixel;
+        int couleurPixel[] = new int[largeur * hauteur];
 
         int rouge;
         int vert;
         int bleu;
 
-        for (int y = 0; y < hauteur; ++y) {
-            for (int x = 0; x < largeur; x++) {
-                couleurPixel = bitmapOriginal.getPixel(x, y);
+        bitmapOriginal.getPixels(couleurPixel,0, largeur, 0, 0, largeur, hauteur);
 
-                rouge = (int) ((Color.red(couleurPixel) * .393) + (Color.green(couleurPixel) * .769) + (Color.blue(couleurPixel) * .189));
-                vert = (int) ((Color.red(couleurPixel) * .349) + (Color.green(couleurPixel) * .686) + (Color.blue(couleurPixel) * .168));
-                bleu = (int) ((Color.red(couleurPixel) * .272) + (Color.green(couleurPixel) * .534) + (Color.blue(couleurPixel) * .131));
+        for (int i = 0; i < couleurPixel.length; ++i) {
+
+                rouge = (int) ((Color.red(couleurPixel[i]) * .393) + (Color.green(couleurPixel[i]) * .769) + (Color.blue(couleurPixel[i]) * .189));
+                vert = (int) ((Color.red(couleurPixel[i]) * .349) + (Color.green(couleurPixel[i]) * .686) + (Color.blue(couleurPixel[i]) * .168));
+                bleu = (int) ((Color.red(couleurPixel[i]) * .272) + (Color.green(couleurPixel[i]) * .534) + (Color.blue(couleurPixel[i]) * .131));
 
                 if (rouge > 255)
                     rouge = 255;
@@ -82,10 +82,9 @@ public class Traitements {
                 if (bleu > 255)
                     bleu = 255;
 
-                bitmapTraite.setPixel(x, y, Color.rgb(rouge, vert, bleu));
-
-            }
+            couleurPixel[i] = Color.rgb(rouge, vert, bleu);
         }
+        bitmapTraite.setPixels(couleurPixel,0, largeur, 0, 0, largeur, hauteur);
         this.iv.setImageBitmap(bitmapTraite);
     }
 
