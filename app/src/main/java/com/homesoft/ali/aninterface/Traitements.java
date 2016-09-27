@@ -10,23 +10,25 @@ import android.widget.ImageView;
  */
 public class Traitements {
 
-    Bitmap bitmapOriginal;
-    ImageView iv;
+    private Bitmap bitmapOriginal;
+    private Bitmap bitmapTraite;
+    private ImageView iv;
+    private int largeur;
+    private int hauteur;
 
     public Traitements(ImageView imageView){
         this.iv = imageView;
-        iv.buildDrawingCache(true);
 
         BitmapDrawable drawable = (BitmapDrawable)iv.getDrawable();
         bitmapOriginal = drawable.getBitmap();
+
+        bitmapTraite = bitmapOriginal.copy(Bitmap.Config.ARGB_8888, true);
+
+        hauteur = bitmapOriginal.getHeight();
+        largeur = bitmapOriginal.getWidth();
     }
 
     public void niveauxGris(){
-
-        Bitmap imageDest = bitmapOriginal.copy(Bitmap.Config.ARGB_8888, true);
-
-        int hauteur = bitmapOriginal.getHeight();
-        int largeur = bitmapOriginal.getWidth();
 
         int couleurPixel;
         int couleurDest;
@@ -37,18 +39,27 @@ public class Traitements {
 
                 couleurDest = (int)( (0.299 * Color.red(couleurPixel)) + (0.587 * Color.green(couleurPixel)) + (0.114 * Color.blue(couleurPixel)) );
 
-                imageDest.setPixel(x,y,Color.rgb(couleurDest, couleurDest, couleurDest));
+                bitmapTraite.setPixel(x,y,Color.rgb(couleurDest, couleurDest, couleurDest));
             }
         }
-        this.iv.setImageBitmap(imageDest);
+        this.iv.setImageBitmap(bitmapTraite);
+    }
+
+    public void niveauxGris2(){
+
+        int pixelSource[] = new int[largeur * hauteur];
+
+        bitmapOriginal.getPixels(pixelSource, 0, largeur, 0, 0, largeur, hauteur);
+
+        for (int i = 0; i < pixelSource.length; ++i ){
+            int couleurGris = (int)( (0.299 * Color.red(pixelSource[i])) + (0.587 * Color.green(pixelSource[i])) + (0.114 * Color.blue(pixelSource[i])) );
+            pixelSource[i] = Color.rgb(couleurGris, couleurGris, couleurGris);
+        }
+        bitmapTraite.setPixels(pixelSource, 0, largeur, 0, 0, largeur,hauteur);
+        this.iv.setImageBitmap(bitmapTraite);
     }
 
     public void sepia() {
-
-        Bitmap imageDest = bitmapOriginal.copy(Bitmap.Config.ARGB_8888, true);
-
-        int hauteur = bitmapOriginal.getHeight();
-        int largeur = bitmapOriginal.getWidth();
 
         int couleurPixel;
 
@@ -71,11 +82,11 @@ public class Traitements {
                 if (bleu > 255)
                     bleu = 255;
 
-                imageDest.setPixel(x, y, Color.rgb(rouge, vert, bleu));
+                bitmapTraite.setPixel(x, y, Color.rgb(rouge, vert, bleu));
 
             }
-            this.iv.setImageBitmap(imageDest);
         }
+        this.iv.setImageBitmap(bitmapTraite);
     }
 
     public void reinit(){
