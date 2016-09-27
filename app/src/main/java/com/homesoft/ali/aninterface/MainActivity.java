@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view){
         if (view.getId() == R.id.niveaugris) {
-            t.niveauxGris();
+            t.niveauxGris2();
             logo.setVisibility(View.INVISIBLE);
             logo.setVisibility(View.VISIBLE);
         }
