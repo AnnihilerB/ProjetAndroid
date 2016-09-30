@@ -96,7 +96,7 @@ public class Traitements {
 
         for (int i = 0; i < pixelSource.length; ++i ){
 
-            Color.RGBToHSV(Color.red(pixelSource[i]), Color.green(pixelSource[i]), Color.blue(pixelSource[i]),hsv);
+            Color.colorToHSV(pixelSource[i], hsv);
             hsv[0] = (float) 120;
             pixelSource[i] = Color.HSVToColor(hsv);
         }
