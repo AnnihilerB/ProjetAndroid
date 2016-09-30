@@ -88,6 +88,22 @@ public class Traitements {
         this.iv.setImageBitmap(bitmapTraite);
     }
 
+    public void colorize(){
+        float hsv[] = new float[3];
+
+        int pixelSource[] = new int[largeur * hauteur];
+        bitmapOriginal.getPixels(pixelSource, 0, largeur, 0, 0, largeur, hauteur);
+
+        for (int i = 0; i < pixelSource.length; ++i ){
+
+            Color.RGBToHSV(Color.red(pixelSource[i]), Color.green(pixelSource[i]), Color.blue(pixelSource[i]),hsv);
+            hsv[0] = (float) 120;
+            pixelSource[i] = Color.HSVToColor(hsv);
+        }
+        bitmapTraite.setPixels(pixelSource, 0, largeur, 0, 0, largeur, hauteur);
+        iv.setImageBitmap(bitmapTraite);
+    }
+
     public void reinit(){
         iv.setImageBitmap(bitmapOriginal);
     }
