@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -48,15 +49,6 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="Reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/reinit"
-        android:layout_alignTop="@+id/afficherCacher"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Afficher/cacher"
@@ -73,6 +65,26 @@
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
         android:id="@+id/colorize" />
+
+    <Button
+        android:text="Reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reinit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/colorize"
+        android:layout_alignEnd="@+id/colorize" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:id="@+id/appareilphoto"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
