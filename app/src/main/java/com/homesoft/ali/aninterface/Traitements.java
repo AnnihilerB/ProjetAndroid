@@ -28,23 +28,6 @@ public class Traitements {
         largeur = bitmapOriginal.getWidth();
     }
 
-    public void niveauxGris(){
-
-        int couleurPixel;
-        int couleurDest;
-
-        for (int y = 0; y < hauteur; ++y){
-            for (int x = 0; x < largeur; x++){
-                couleurPixel = bitmapOriginal.getPixel(x,y);
-
-                couleurDest = (int)( (0.299 * Color.red(couleurPixel)) + (0.587 * Color.green(couleurPixel)) + (0.114 * Color.blue(couleurPixel)) );
-
-                bitmapTraite.setPixel(x,y,Color.rgb(couleurDest, couleurDest, couleurDest));
-            }
-        }
-        this.iv.setImageBitmap(bitmapTraite);
-    }
-
     public void niveauxGris2(){
 
         int pixelSource[] = new int[largeur * hauteur];
