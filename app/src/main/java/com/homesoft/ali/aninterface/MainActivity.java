@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         this.logo = (ImageView)findViewById(R.id.imageView);
-        logo.setVisibility(View.INVISIBLE);
+        logo.setVisibility(View.VISIBLE);
 
         this.info = (TextView)findViewById(R.id.textView);
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boutonColorize.setOnClickListener(this);
 
         this.t = new Traitements(logo);
+
+        Toast.makeText(getApplicationContext(), "Oncreate", Toast.LENGTH_SHORT).show();
     }
 
     public void onClick(View view){
