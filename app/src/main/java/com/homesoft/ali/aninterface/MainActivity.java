@@ -1,18 +1,12 @@
 package com.homesoft.ali.aninterface;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,18 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boutonColorize.setOnClickListener(this);
 
         this.t = new Traitements(logo);
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-
-        Resources res  = getResources();
-        int id = R.mipmap.vegeta;
-        BitmapFactory.decodeResource(res, id,options);
-        int width = options.outWidth;
-        int height = options.outHeight;
-
-        System.out.println( "taille");
-        System.out.println( width + " " + height);
     }
 
     public void onClick(View view){
