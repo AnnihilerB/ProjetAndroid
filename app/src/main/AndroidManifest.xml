@@ -3,7 +3,12 @@
     package="com.homesoft.ali.aninterface">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <paths xmlns:android="http://schemas.android.com/apk/res/android">
+        <external-path android:name="my_images" android:path="Android/data/com.projet.retouche.photo/files/Pictures" />
+    </paths>
+
 
     <application
         android:allowBackup="true"
