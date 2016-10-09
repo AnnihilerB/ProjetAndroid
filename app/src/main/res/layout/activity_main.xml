@@ -36,7 +36,7 @@
         android:id="@+id/imageView"
         android:minHeight="300dp"
         android:minWidth="300dp"
-        android:src="@mipmap/vegeta"
+        android:src="@mipmap/marche"
         android:layout_below="@+id/textView"
         android:layout_marginTop="5dp"
         android:layout_width="300dp"
@@ -61,6 +61,16 @@
             android:layout_alignParentStart="true">
 
             <Button
+                android:text="Aucun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reinit"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/colorize"
+                android:layout_alignEnd="@+id/colorize"
+                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Niveau de gris"
@@ -69,6 +79,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 style="@style/Widget.AppCompat.Button.Borderless" />
+
+            <Button
+                android:id="@+id/isoler"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Isoler"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -81,16 +98,6 @@
                 style="@style/Widget.AppCompat.Button.Borderless"/>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Afficher/cacher"
-                android:id="@+id/afficherCacher"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                style="@style/Widget.AppCompat.Button.Borderless"/>
-
-            <Button
                 android:text="Colorize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,15 +107,7 @@
                 android:id="@+id/colorize"
                 style="@style/Widget.AppCompat.Button.Borderless" />
 
-            <Button
-                android:text="Reset"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/reinit"
-                android:layout_alignParentBottom="true"
-                android:layout_alignRight="@+id/colorize"
-                android:layout_alignEnd="@+id/colorize"
-                style="@style/Widget.AppCompat.Button.Borderless"/>
+
         </LinearLayout>
     </HorizontalScrollView>
 </RelativeLayout>
