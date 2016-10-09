@@ -1,5 +1,6 @@
 package com.homesoft.ali.aninterface;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     boolean imageEstAffichée = false;
 
-    ImageView logo;
+    ImageView imageView;
     TextView info;
     Traitements t;
 
@@ -22,64 +23,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.logo = (ImageView)findViewById(R.id.imageView);
-        logo.setVisibility(View.VISIBLE);
+        //Bloquage de la rotation
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //ImageView
+        this.imageView = (ImageView)findViewById(R.id.imageView);
+        imageView.setVisibility(View.VISIBLE);
+
+        //TextView
         this.info = (TextView)findViewById(R.id.textView);
 
+        //Bouton
         Button boutonNvxGris = (Button)findViewById(R.id.niveaugris);
         Button boutonSepia = (Button)findViewById(R.id.sepia);
-        Button boutonAfficherCacher = (Button)findViewById(R.id.afficherCacher);
         Button boutonReinit = (Button)findViewById(R.id.reinit);
         Button boutonColorize = (Button)findViewById(R.id.colorize);
+        Button boutonIsoler = (Button)findViewById(R.id.isoler);
 
-        info.setText("Aucune image");
 
-        boutonNvxGris.setOnClickListener(this);
-        boutonSepia.setOnClickListener(this);
-        boutonAfficherCacher.setOnClickListener(this);
-        boutonReinit.setOnClickListener(this);
-        boutonColorize.setOnClickListener(this);
+        boutonNvxGris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.niveauxGris();
+            }
+        });
+        boutonSepia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.sepia();
+            }
+        });
+        boutonReinit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.reinit();
+            }
+        });
+        boutonColorize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.colorize();
+            }
+        });
+        boutonIsoler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.isolerCouleur();
+            }
+        });
 
-        this.t = new Traitements(logo);
-
-        Toast.makeText(getApplicationContext(), "Oncreate", Toast.LENGTH_SHORT).show();
+        //Instanciation du traitement.
+        this.t = new Traitements(imageView);
     }
-
-    public void onClick(View view){
-        if (view.getId() == R.id.niveaugris) {
-            t.niveauxGris2();
-            logo.setVisibility(View.INVISIBLE);
-            logo.setVisibility(View.VISIBLE);
-        }
-        if (view.getId() == R.id.sepia) {
-            t.sepia();
-            logo.setVisibility(View.INVISIBLE);
-            logo.setVisibility(View.VISIBLE);
-        }
-        if (view.getId() == R.id.afficherCacher)
-            afficherCacher(logo, info);
-        if (view.getId() == R.id.reinit)
-            t.reinit();
-        if (view.getId() == R.id.colorize) {
-            t.colorize();
-            logo.setVisibility(View.INVISIBLE);
-            logo.setVisibility(View.VISIBLE);
-        }
-    }
-
-    public void afficherCacher(ImageView logo, TextView info){
-        if (imageEstAffichée == false) {
-            logo.setVisibility(View.VISIBLE);
-            imageEstAffichée = true;
-        }
-        else{
-            logo.setVisibility(View.INVISIBLE);
-            info.setText("Aucune image");
-            imageEstAffichée = false;
-        }
-
-    }
-
-
 }
