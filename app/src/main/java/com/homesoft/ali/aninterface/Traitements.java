@@ -28,13 +28,13 @@ public class Traitements {
         largeur = bitmapOriginal.getWidth();
     }
 
-    public void niveauxGris2(){
+    public void niveauxGris(){
 
         int pixelSource[] = new int[largeur * hauteur];
 
         bitmapOriginal.getPixels(pixelSource, 0, largeur, 0, 0, largeur, hauteur);
 
-        for (int i = 0; i < pixelSource.length; ++i ){
+        for (int i = 0; i < pixelSource.length; ++i){
             int couleurGris = (int)( (0.299 * Color.red(pixelSource[i])) + (0.587 * Color.green(pixelSource[i])) + (0.114 * Color.blue(pixelSource[i])) );
             pixelSource[i] = Color.rgb(couleurGris, couleurGris, couleurGris);
         }
@@ -89,6 +89,34 @@ public class Traitements {
 
     public void reinit(){
         iv.setImageBitmap(bitmapOriginal);
+    }
+
+    public void isolerCouleur(){
+
+        int couleurRef = Color.RED;
+        int distanceMax = 200;
+
+        int pixelSource[] = new int[largeur * hauteur];
+        bitmapOriginal.getPixels(pixelSource, 0, largeur, 0, 0, largeur, hauteur);
+
+        for (int i = 0; i < pixelSource.length; ++i){
+            if (Utils.distance(couleurRef, pixelSource[i]) >= distanceMax)
+                pixelSource[i] = couleurVersNG(pixelSource[i]);
+        }
+
+        bitmapTraite.setPixels(pixelSource, 0, largeur, 0, 0, largeur,hauteur);
+        this.iv.setImageBitmap(bitmapTraite);
+    }
+
+    private int couleurVersNG(int couleur){
+        int r = Color.red(couleur);
+        int g = Color.green(couleur);
+        int b = Color.blue(couleur);
+
+        int niveauGris = (int) (0.3*r + 0.59 *g +0.11*b);
+        int cM = Color.rgb(niveauGris, niveauGris, niveauGris);
+
+        return cM;
     }
 
 }
