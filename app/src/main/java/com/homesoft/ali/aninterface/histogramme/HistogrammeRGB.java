@@ -10,9 +10,9 @@ import android.util.Log;
 
 public class HistogrammeRGB extends HistogrammeAbstract implements  Histogramme {
 
-    int histogrammeRouge[];
-    int histogrammeVert[];
-    int histogrammeBleu[];
+    private int histogrammeRouge[];
+    private int histogrammeVert[];
+    private int histogrammeBleu[];
 
     public HistogrammeRGB(){
         histogrammeRouge = new int[NBCOULEURS];

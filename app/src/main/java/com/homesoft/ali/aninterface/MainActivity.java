@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -28,12 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CAPTURE = 1;
 
-    ImageView imageView;
-    TextView info;
-    Traitements t;
+    private ImageView imageView;
+    private Traitements t;
 
-    Uri imageURI;
-    File photoFile;
+    private Uri imageURI;
+    private File photoFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
         //ImageView
         this.imageView = (ImageView)findViewById(R.id.imageView);
         imageView.setVisibility(View.VISIBLE);
-
-        //TextView
-        this.info = (TextView)findViewById(R.id.textView);
 
         //Boutons
 

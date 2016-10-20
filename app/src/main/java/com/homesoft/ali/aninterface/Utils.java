@@ -12,22 +12,12 @@ import android.widget.ImageView;
 
 public class Utils {
 
-    static Resources res;
-    static BitmapFactory.Options options;
+    private static Resources res;
+    private static BitmapFactory.Options options;
 
     public Utils(Resources res){
         this.res = res;
         options = new BitmapFactory.Options();
-    }
-
-    public static int calculerLargeur(ImageView iv){
-        BitmapFactory.decodeResource(res, iv.getId(),options);
-        return options.outWidth;
-    }
-
-    public static int calculerHauteur(ImageView iv){
-        BitmapFactory.decodeResource(res, iv.getId(),options);
-        return options.outHeight;
     }
 
     public static int distance(int couleur, int couleur2){

@@ -20,12 +20,12 @@ public class LutRGB {
 
     private static final int CONTRASTE = 255;
 
-    int minRouge;
-    int minVert;
-    int minBleu;
-    int maxRouge;
-    int maxVert;
-    int maxBleu;
+    private int minRouge;
+    private int minVert;
+    private int minBleu;
+    private int maxRouge;
+    private int maxVert;
+    private int maxBleu;
 
     protected static final int NBCOULEURS = 256;
 
