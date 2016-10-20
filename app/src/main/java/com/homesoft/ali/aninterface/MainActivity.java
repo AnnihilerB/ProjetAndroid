@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         Button boutonIsoler = (Button)findViewById(R.id.isoler);
         Button boutonEgaHisto = (Button)findViewById(R.id.contrasteEga);
         Button boutonExtLine = (Button)findViewById(R.id.contrasteExt);
+        Button boutonSurexposition = (Button)findViewById(R.id.surexposition);
 
         boutonNvxGris.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +114,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 t.extensionContrasteRGB();
+            }
+        });
+        boutonSurexposition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.surexposition();
             }
         });
 
