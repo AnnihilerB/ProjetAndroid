@@ -179,6 +179,34 @@ public class Traitements {
 
     }
 
+    public void surexposition(){
+
+        int CONSTANTE = 20;
+
+        int rouge;
+        int vert;
+        int bleu;
+
+        for (int i = 0; i<tabPixelsOriginal.length; i++){
+
+            rouge = Color.red(tabPixelsOriginal[i]) + CONSTANTE;
+            vert = Color.green(tabPixelsOriginal[i]) + CONSTANTE;
+            bleu = Color.blue(tabPixelsOriginal[i]) + CONSTANTE;
+
+            if (rouge > 255)
+                rouge = 255;
+            if (vert > 255)
+                vert = 255;
+            if (bleu > 255)
+                bleu = 255;
+
+            tabPixelsTraitement[i] = Color.rgb(rouge, vert, bleu);
+
+        }
+        bitmapTraite.setPixels(tabPixelsTraitement, 0, largeur, 0, 0, largeur, hauteur);
+        iv.setImageBitmap(bitmapTraite);
+    }
+
     public void MettreAJourTableauxPixels(Bitmap bitmap){
 
         tabPixelsOriginal = null;
