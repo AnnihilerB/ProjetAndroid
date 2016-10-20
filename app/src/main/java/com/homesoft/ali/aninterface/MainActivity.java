@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Black background
+        final FrameLayout layoutBackground = (FrameLayout)findViewById(R.id.background);
+
         //Bloquage de la rotation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -48,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
         //Boutons
 
         final FloatingActionsMenu menuActions = (FloatingActionsMenu)findViewById(R.id.actionsMenu);
+        menuActions.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                layoutBackground.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                layoutBackground.setVisibility(View.INVISIBLE);
+            }
+        });
         FloatingActionButton fabCamera = (FloatingActionButton)findViewById(R.id.fabCamera);
         FloatingActionButton fabGallerie = (FloatingActionButton)findViewById(R.id.fabGallerie);
 
@@ -56,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         Button boutonReinit = (Button)findViewById(R.id.reinit);
         Button boutonColorize = (Button)findViewById(R.id.colorize);
         Button boutonIsoler = (Button)findViewById(R.id.isoler);
-        Button boutonHisto = (Button)findViewById(R.id.histo);
+        Button boutonEgaHisto = (Button)findViewById(R.id.contrasteEga);
+        Button boutonExtLine = (Button)findViewById(R.id.contrasteExt);
 
         boutonNvxGris.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +104,15 @@ public class MainActivity extends AppCompatActivity {
                 t.isolerCouleur();
             }
         });
-        boutonHisto.setOnClickListener(new View.OnClickListener() {
+        boutonEgaHisto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {t.egaHistoExtensionContrasteRGB();
+            }
+        });
+        boutonExtLine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.extensionContrasteRGB();
             }
         });
 
@@ -99,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (hasCamera()){
                     capturePhoto();
+                    menuActions.collapse();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Aucun appareil photo disponible.", Toast.LENGTH_SHORT).show();
