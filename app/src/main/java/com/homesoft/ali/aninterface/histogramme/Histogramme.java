@@ -7,7 +7,5 @@ import android.graphics.Bitmap;
  */
 
 public interface Histogramme {
-    Histogramme getHistogramme();
     void genererHistogramme(Bitmap bitmap);
-    int getNombreUtilisationCouleur(int index);
 }
