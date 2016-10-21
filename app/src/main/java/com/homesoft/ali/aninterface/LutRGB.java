@@ -1,8 +1,6 @@
 package com.homesoft.ali.aninterface;
 
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.util.Log;
 
 /**
  * Created by ali on 14/10/16.
@@ -11,12 +9,12 @@ import android.util.Log;
 public class LutRGB {
 
     /**
-     * Cette clase contiendra un tableau de pixel RGB de 256 cases.
+     * Cette clase contiendra un tableauPixRGB de pixel RGB de 256 cases.
      * Chaque case contiendra la valeur des pixels modifiés. l'index de la case est donc la valeur de référence.
      * Par exemple, la case 234 contiendra un PixelRGB qui lui même contient les valeurs à appliquer.
      */
 
-    PixelRGB[] tabPixels;
+    private PixelRGB[] tableauPixRGB;
 
     private static final int CONTRASTE = 255;
 
@@ -29,58 +27,55 @@ public class LutRGB {
 
     protected static final int NBCOULEURS = 256;
 
-    public void genererLUT(Bitmap bitmap){
+    public LutRGB(){
+        this.tableauPixRGB = new PixelRGB[NBCOULEURS];
+    }
 
-        calculerDynamique(bitmap);
+    public void genererLUT(int tab[]){
 
-        tabPixels = new PixelRGB[NBCOULEURS];
+        calculerDynamique(tab);
 
-        for (int i = 0; i < tabPixels.length; i++){
+        for (int i = 0; i < this.tableauPixRGB.length; i++){
             PixelRGB pix = new PixelRGB();
 
             pix.setRouge(calculValeurLUT(i, minRouge, maxRouge));
             pix.setVert(calculValeurLUT(i, minVert, maxVert));
             pix.setBleu(calculValeurLUT(i, minBleu, maxBleu));
 
-            tabPixels[i] = pix;
+            this.tableauPixRGB[i] = pix;
         }
     }
 
     public int getValeurRouge(int index){
-        return tabPixels[index].getRouge();
+        return tableauPixRGB[index].getRouge();
     }
     public int getValeurVert(int index){
-        return tabPixels[index].getVert();
+        return tableauPixRGB[index].getVert();
     }
     public int getValeurBleu(int index){
-        return tabPixels[index].getBleu();
+        return tableauPixRGB[index].getBleu();
     }
 
     /**
      * Calcul de la dynamique de l'image pour chaque composante RGB.
-     * @param bitmap image à analyser
      */
 
-    private void calculerDynamique(Bitmap bitmap){
+    private void calculerDynamique(int tableau[]){
 
-        int tabPixels[] = new int[bitmap.getHeight() * bitmap.getWidth()];
-
-        bitmap.getPixels(tabPixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-
-        minRouge = Color.red(tabPixels[0]);
-        minVert = Color.green(tabPixels[0]);
-        minBleu = Color.blue(tabPixels[0]);
+        minRouge = Color.red(tableau[0]);
+        minVert = Color.green(tableau[0]);
+        minBleu = Color.blue(tableau[0]);
 
         maxRouge = maxVert = maxBleu = 0;
 
-        for (int i = 0; i < tabPixels.length; i++){
-            minRouge = Math.min(minRouge, Color.red(tabPixels[i]));
-            minVert = Math.min(minVert, Color.green(tabPixels[i]));
-            minBleu = Math.min(minBleu, Color.blue(tabPixels[i]));
+        for (int i = 0; i < tableau.length; i++){
+            minRouge = Math.min(minRouge, Color.red(tableau[i]));
+            minVert = Math.min(minVert, Color.green(tableau[i]));
+            minBleu = Math.min(minBleu, Color.blue(tableau[i]));
 
-            maxRouge = Math.max(maxRouge, Color.red(tabPixels[i]));
-            maxVert = Math.max(maxVert, Color.green(tabPixels[i]));
-            maxBleu = Math.max(maxBleu, Color.blue(tabPixels[i]));
+            maxRouge = Math.max(maxRouge, Color.red(tableau[i]));
+            maxVert = Math.max(maxVert, Color.green(tableau[i]));
+            maxBleu = Math.max(maxBleu, Color.blue(tableau[i]));
         }
     }
 
@@ -96,7 +91,6 @@ public class LutRGB {
     private int calculValeurLUT(int val, int min, int max){
         return ( CONTRASTE * (val - min) ) / (max - min);
     }
-
 }
 
 
