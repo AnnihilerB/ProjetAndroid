@@ -35,13 +35,6 @@ public class LutRGB {
 
         tabPixels = new PixelRGB[NBCOULEURS];
 
-        Log.i("MIN", String.valueOf(minRouge));
-        Log.i("MIN", String.valueOf(minVert));
-        Log.i("MIN", String.valueOf(minBleu));
-        Log.i("MAX", String.valueOf(maxRouge));
-        Log.i("MAX", String.valueOf(maxVert));
-        Log.i("MAX", String.valueOf(maxBleu));
-
         for (int i = 0; i < tabPixels.length; i++){
             PixelRGB pix = new PixelRGB();
 
@@ -50,7 +43,6 @@ public class LutRGB {
             pix.setBleu(calculValeurLUT(i, minBleu, maxBleu));
 
             tabPixels[i] = pix;
-
         }
     }
 
