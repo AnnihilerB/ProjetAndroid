@@ -54,10 +54,10 @@ public class Traitements {
         bitmapOriginal.getPixels(tabPixelsOriginal, 0, largeur, 0, 0, largeur, hauteur);
 
         lut = new LutRGB();
-        lut.genererLUT(bitmapOriginal);
+        lut.genererLUT(tabPixelsOriginal);
 
         histo = new HistogrammeCumule();
-        histo.genererHistogramme(bitmapOriginal);
+        histo.genererHistogramme(tabPixelsOriginal);
 
         stock = new StockageTraitements();
     }
@@ -277,12 +277,6 @@ public class Traitements {
      */
     public void MettreAJourTableauxPixels(Bitmap bitmap){
 
-        //Déréférencement pour libérer de la mémoire
-        tabPixelsOriginal = null;
-        tabPixelsTraitement = null;
-        bitmapTraite.recycle();
-        stock.viderTraitements();
-
         //Création du nouveau bitmap et recalcul des nouvelles largeur et hauteur.
         //Le bitmap capturé est rescalé pour ne pas causer de dépassemenr de mémoire.
         bitmapOriginal = Bitmap.createScaledBitmap(bitmap,1500, 1500, false);
@@ -296,7 +290,18 @@ public class Traitements {
         bitmapTraite = Bitmap.createBitmap(largeur, hauteur, Bitmap.Config.ARGB_8888);
 
         bitmapOriginal.getPixels(tabPixelsOriginal, 0, largeur, 0, 0, largeur, hauteur);
-        lut.genererLUT(bitmapOriginal);
+
+        lut.genererLUT(tabPixelsOriginal);
+        histo.genererHistogramme(tabPixelsOriginal);
+
         iv.setImageBitmap(bitmapOriginal);
+    }
+
+    public void nettoyer(){
+        tabPixelsOriginal = null;
+        tabPixelsTraitement = null;
+        bitmapTraite.recycle();
+        histo.reinitHsito();
+        stock.viderTraitements();
     }
 }
