@@ -7,5 +7,5 @@ import android.graphics.Bitmap;
  */
 
 public interface Histogramme {
-    void genererHistogramme(Bitmap bitmap);
+    void genererHistogramme(int tab[]);
 }

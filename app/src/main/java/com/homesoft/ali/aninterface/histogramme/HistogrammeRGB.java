@@ -8,6 +8,7 @@ import android.util.Log;
  * Created by ali on 10/10/16.
  */
 
+/**
 public class HistogrammeRGB extends HistogrammeAbstract implements  Histogramme {
 
     private int histogrammeRouge[];
@@ -38,3 +39,4 @@ public class HistogrammeRGB extends HistogrammeAbstract implements  Histogramme 
         }
     }
 }
+**/

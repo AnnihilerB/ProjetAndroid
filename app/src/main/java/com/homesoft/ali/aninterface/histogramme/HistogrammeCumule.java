@@ -21,13 +21,11 @@ public class HistogrammeCumule extends HistogrammeAbstract  {
         histoB = new int[NBCOULEURS];
     }
 
-    public void genererHistogramme(Bitmap bitmap) {
-        int tabPixels[] = new int[bitmap.getWidth() * bitmap.getHeight()];
-        bitmap.getPixels(tabPixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight() );
-        for (int i = 0; i < tabPixels.length; i++){
-                histoR[Color.red(tabPixels[i])] ++;
-                histoG[Color.green(tabPixels[i])] ++;
-                histoB[Color.blue(tabPixels[i])] ++;
+    public void genererHistogramme(int tab[]) {
+        for (int i = 0; i < tab.length; i++){
+                histoR[Color.red(tab[i])] ++;
+                histoG[Color.green(tab[i])] ++;
+                histoB[Color.blue(tab[i])] ++;
         }
         int cumulR = 0;
         int cumulG = 0;
@@ -56,5 +54,13 @@ public class HistogrammeCumule extends HistogrammeAbstract  {
 
     public int getNbpixels() {
         return nbpixels;
+    }
+
+    public void reinitHsito(){
+        for (int i = 0; i < NBCOULEURS; i++){
+            histoR[i] = 0;
+            histoG[i] = 0;
+            histoB[i] = 0;
+        }
     }
 }
