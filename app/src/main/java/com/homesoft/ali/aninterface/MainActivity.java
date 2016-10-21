@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
         Bitmap bitmap;
         try
         {
+            t.nettoyer();
             bitmap = MediaStore.Images.Media.getBitmap(cr, imageURI);
             t.MettreAJourTableauxPixels(bitmap);
         }
